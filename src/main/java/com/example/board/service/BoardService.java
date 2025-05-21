@@ -9,6 +9,8 @@ import com.example.board.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class BoardService {
@@ -22,5 +24,11 @@ public class BoardService {
         board.setMember(findMember);
 
         return new BoardResponseDTO(boardRepository.save(board));
+    }
+
+    public List<BoardResponseDTO> findAll() {
+        List<Board> boards = boardRepository.findAll();
+
+        return boards.stream().map(BoardResponseDTO::new).toList();
     }
 }

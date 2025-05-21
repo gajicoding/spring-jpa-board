@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/boards")
 @RequiredArgsConstructor
@@ -17,5 +19,10 @@ public class BoardController {
     @PostMapping
     public ResponseEntity<BoardResponseDTO> save(@RequestBody CreateBoardRequestDTO requestDTO) {
         return new ResponseEntity<>(boardService.save(requestDTO), HttpStatus.CREATED);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<BoardResponseDTO>> findAll() {
+        return new ResponseEntity<>(boardService.findAll(), HttpStatus.OK);
     }
 }
