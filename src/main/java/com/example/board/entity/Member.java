@@ -1,7 +1,10 @@
 package com.example.board.entity;
 
+import com.example.board.dto.SignUpRequestDTO;
 import jakarta.persistence.*;
+import lombok.Getter;
 
+@Getter
 @Entity
 @Table(name = "member")
 public class Member extends BaseEntity {
@@ -16,4 +19,12 @@ public class Member extends BaseEntity {
     private String password;
 
     private Integer age;
+
+    public Member() {}
+
+    public Member(SignUpRequestDTO requestDTO) {
+        this.username = requestDTO.getUsername();
+        this.password = requestDTO.getPassword();
+        this.age = requestDTO.getAge();
+    }
 }
