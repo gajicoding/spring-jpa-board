@@ -27,4 +27,8 @@ public class Member extends BaseEntity {
         this.password = requestDTO.getPassword();
         this.age = requestDTO.getAge();
     }
+
+    public void updatePassword(String password) {
+        this.password = password;
+    }
 }
