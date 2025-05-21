@@ -26,12 +26,12 @@ public class MemberService {
     }
 
     public MemberResponseDTO findById(Long id) {
-        return new MemberResponseDTO(memberRepository.findByOrElseThrow(id));
+        return new MemberResponseDTO(memberRepository.findByIdOrElseThrow(id));
     }
 
     @Transactional
     public void updatePassword(Long id, UpdatePasswordRequestDTO requestDTO) {
-        Member findMember = memberRepository.findByOrElseThrow(id);
+        Member findMember = memberRepository.findByIdOrElseThrow(id);
 
         if(!findMember.getPassword().equals(requestDTO.getOldPassword())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "password does not match");
