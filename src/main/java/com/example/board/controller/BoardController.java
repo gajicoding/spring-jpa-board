@@ -1,6 +1,7 @@
 package com.example.board.controller;
 
 import com.example.board.dto.BoardResponseDTO;
+import com.example.board.dto.BoardWithAgeResponseDTO;
 import com.example.board.dto.CreateBoardRequestDTO;
 import com.example.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -24,5 +25,10 @@ public class BoardController {
     @GetMapping
     public ResponseEntity<List<BoardResponseDTO>> findAll() {
         return new ResponseEntity<>(boardService.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<BoardWithAgeResponseDTO> findById(@PathVariable Long id) {
+        return new ResponseEntity<>(boardService.findById(id), HttpStatus.OK);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.board.service;
 
 import com.example.board.dto.BoardResponseDTO;
+import com.example.board.dto.BoardWithAgeResponseDTO;
 import com.example.board.dto.CreateBoardRequestDTO;
 import com.example.board.entity.Board;
 import com.example.board.entity.Member;
@@ -30,5 +31,11 @@ public class BoardService {
         List<Board> boards = boardRepository.findAll();
 
         return boards.stream().map(BoardResponseDTO::new).toList();
+    }
+
+    public BoardWithAgeResponseDTO findById(Long id) {
+        Board findBoard = boardRepository.findByIdOrElseThrow(id);
+
+        return new BoardWithAgeResponseDTO(findBoard.getTitle(), findBoard.getContents(), findBoard.getMember().getAge());
     }
 }
